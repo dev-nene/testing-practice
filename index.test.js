@@ -1,4 +1,4 @@
-import {capitalize} from "./index.js"
+import { capitalize, reverseString } from "./index.js";
 
 describe("capitalize", () => {
   describe("valid inputs", () => {
@@ -22,6 +22,29 @@ describe("capitalize", () => {
 
     test("handles already capitalized word", () => {
       expect(capitalize("Hello")).toBe("Hello");
+    });
+  });
+});
+
+describe("reverseString", () => {
+  describe("valid inputs", () => {
+    test.each([
+      ["key", "yek"],
+      ["book", "koob"],
+      ["code", "edoc"],
+    ])("reverseString '%s' -> '%s'", (input, expected) => {
+      expect(reverseString(input)).toBe(expected);
+    });
+  });
+  describe("edge cases", () => {
+    test("return empty string for empty input", () => {
+      expect(reverseString("")).toBe("");
+    });
+    test("handles single character", () => {
+      expect(reverseString("a")).toBe("a");
+    });
+    test("handles palindrom", () => {
+      expect(reverseString("madam")).toBe("madam");
     });
   });
 });
