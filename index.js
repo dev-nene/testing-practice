@@ -41,4 +41,15 @@ const calculator = {
   },
 };
 
-export { capitalize, reverseString, caesarCipher, calculator };
+function analyzeArray(arr) {
+  if (arr.length === 0) {
+    return { average: 0, min: null, max: null, length: 0 };
+  }
+  const length = arr.length;
+  const average = arr.reduce((acc, item) => acc + item, 0) / length;
+  const min = Math.min(...arr);
+  const max = Math.max(...arr);
+  return { average, min, max, length };
+}
+
+export { capitalize, reverseString, caesarCipher, calculator, analyzeArray };
