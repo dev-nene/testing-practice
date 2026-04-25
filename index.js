@@ -6,4 +6,20 @@ function reverseString(word) {
   return word.split("").reverse().join("");
 }
 
-export { capitalize, reverseString };
+function caesarCipher(input, k) {
+  let result = "";
+  for (let i = 0; i < input.length; i++) {
+    let index = input.charCodeAt(i);
+    if (index >= 97 && index <= 122) {
+      index = ((index - 97 + k) % 26) + 97;
+      result += String.fromCharCode(index);
+    } else if (index >= 65 && index <= 90) {
+      index = ((index - 65 + k) % 26) + 65;
+      result += String.fromCharCode(index);
+    } else {
+      result += input[i];
+    }
+  }
+  return result;
+}
+export { capitalize, reverseString, caesarCipher };

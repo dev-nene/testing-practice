@@ -1,4 +1,4 @@
-import { capitalize, reverseString } from "./index.js";
+import { capitalize, reverseString, caesarCipher } from "./index.js";
 
 describe("capitalize", () => {
   describe("valid inputs", () => {
@@ -46,5 +46,33 @@ describe("reverseString", () => {
     test("handles palindrom", () => {
       expect(reverseString("madam")).toBe("madam");
     });
+  });
+});
+
+describe("caesarCipher ", () => {
+  describe("valid inputs", () => {
+    test.each([
+      ["abc", 3, "def"],
+      ["abc", 7, "hij"],
+    ])("caesarCipher(%s, %i) -> %s", (input, i, expected) => {
+      expect(caesarCipher(input, i)).toBe(expected);
+    });
+  });
+  describe("edge cases", () => {
+    test("handless letter overflow", () => {
+      expect(caesarCipher("xyz", 6)).toBe("def");
+    });
+    test("handless last letter", () => {
+      expect(caesarCipher("word", 3)).toBe("zrug");
+    });
+    test("handless capital letter overflow", () => {
+      expect(caesarCipher("XYZ", 6)).toBe("DEF");
+    });
+    test("handles capital last letter", () => {
+      expect(caesarCipher("WORD", 3)).toBe("ZRUG");
+    });
+    test("handless symbols", () => {
+      expect(caesarCipher("todo#", 7)).toBe("avkv#")
+    })
   });
 });
