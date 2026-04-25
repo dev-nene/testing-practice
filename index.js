@@ -22,4 +22,23 @@ function caesarCipher(input, k) {
   }
   return result;
 }
-export { capitalize, reverseString, caesarCipher };
+
+const calculator = {
+  add(a, b) {
+    return a + b;
+  },
+  subtract(a, b) {
+    return a - b;
+  },
+  mul(a, b) {
+    return a * b;
+  },
+  div(a, b) {
+    if (b === 0) {
+      throw new Error("Can't divide with zero");
+    }
+    return a / b;
+  },
+};
+
+export { capitalize, reverseString, caesarCipher, calculator };

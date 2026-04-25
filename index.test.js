@@ -1,4 +1,9 @@
-import { capitalize, reverseString, caesarCipher } from "./index.js";
+import {
+  capitalize,
+  reverseString,
+  caesarCipher,
+  calculator,
+} from "./index.js";
 
 describe("capitalize", () => {
   describe("valid inputs", () => {
@@ -72,7 +77,56 @@ describe("caesarCipher ", () => {
       expect(caesarCipher("WORD", 3)).toBe("ZRUG");
     });
     test("handless symbols", () => {
-      expect(caesarCipher("todo#", 7)).toBe("avkv#")
+      expect(caesarCipher("todo#", 7)).toBe("avkv#");
+    });
+  });
+});
+
+describe("calculator", () => {
+  describe("add", () => {
+    test.each([
+      [2, 2, 4],
+      [0, 5, 5],
+      [-1, -1, -2],
+      [10, -5, 5],
+    ])("%i + %i = %i", (a, b, res) => {
+      expect(calculator.add(a, b)).toBe(res);
+    });
+  });
+
+  describe("subtract", () => {
+    test.each([
+      [10, 5, 5],
+      [2, 10, -8],
+      [-5, -4, -1],
+      [5, 0, 5],
+      [2, -3, 5],
+    ])("%i - %i = %i", (a, b, res) => {
+      expect(calculator.subtract(a, b)).toBe(res);
+    });
+  });
+
+  describe("multiply", () => {
+    test.each([
+      [2, 3, 6],
+      [2, -4, -8],
+      [-1, 10, -10],
+      [0, 5, 0],
+      [-2, -1, 2],
+    ])("%i * %i = %i", (a, b, res) => {
+      expect(calculator.mul(a, b)).toBe(res);
+    });
+  });
+
+  describe("divide", () => {
+    test.each([
+      [6, 2, 3],
+      [10, -2, -5],
+    ])("%i / %i = %s", (a, b, res) => {
+      expect(calculator.div(a, b)).toBe(res);
+    });
+    test("division by zero", () => {
+      expect(() => calculator.div(5, 0)).toThrow();
     })
   });
 });
